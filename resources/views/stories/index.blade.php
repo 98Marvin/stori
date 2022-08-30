@@ -23,8 +23,13 @@
                                 <tr>
                                     <td>{{ $story->title }}</td>
                                     <td>{{ $story->genre }}</td>
-                                    <td>{{ $story->status == 1 ? 'Online' : 'Offline'}}</td>
-                                    <td>Edit</td>
+                                    <td>
+                                        <p class="{{ $story->status ? 'badge badge-pill badge-success' : 'badge badge-pill badge-danger' }}">
+                                            {{ $story->status == 1 ? 'Online' : 'Offline'}}</td>
+                                        </p>
+                                    <td>
+                                        <a href="{{ route('stories.show', [$story]) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

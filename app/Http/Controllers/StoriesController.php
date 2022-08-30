@@ -12,4 +12,10 @@ class StoriesController extends Controller
         $stories = Story::where('user_id', auth()->user()->id)->paginate(1);
         return view('stories.index', compact('stories'));
     }
+    
+    public function show (Story $story) {
+
+        // $story = Story::findorFail($story);
+        return view('stories.show', compact('story'));
+    }
 }
