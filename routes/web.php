@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/stories', 'StoriesController@index')->name('stories');
+    Route::get('/stories/create', 'StoriesController@create')->name('stories.create');
     Route::get('/stories/{story}', 'StoriesController@show')->name('stories.show');
+    Route::post('/stories/store', 'StoriesController@store')->name('stories.store');
     
 });

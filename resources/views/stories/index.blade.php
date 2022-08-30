@@ -28,7 +28,7 @@
                                             {{ $story->status == 1 ? 'Online' : 'Offline'}}</td>
                                         </p>
                                     <td>
-                                        <a href="{{ route('stories.show', [$story]) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="{{ route('stories.show', [$story]) }}" class="btn btn-warning btn-sm">View</a>
                                     </td>
                                 </tr>
                             @endforeach
