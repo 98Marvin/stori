@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Stories') }}</div>
+                <div class="card-header">
+                    {{ __('Stories') }}
+                    <a class="float-right btn bg-info bg-gradient btn-sm" href="{{ route('stories.create') }}">Create Story</a>
+                </div>
 
                 <div class="card-body">
                     <table class="table">

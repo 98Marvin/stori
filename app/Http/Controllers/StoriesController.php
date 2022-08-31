@@ -20,7 +20,8 @@ class StoriesController extends Controller
 
     public function create()
     {
-        return view('stories.create');
+        $story = new Story();
+        return view('stories.create', compact('story'));
     }
 
     public function store(Request $request)
@@ -64,6 +65,8 @@ class StoriesController extends Controller
 
         $story->update($input);
 
-        return redirect()->route('stories')->with('status', 'Story was Updated Successfully..!!'); 
+        return redirect()
+            ->route('stories')
+            ->with('status', 'Story was Updated Successfully..!!');
     }
 }
