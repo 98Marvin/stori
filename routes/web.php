@@ -25,5 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/stories/create', 'StoriesController@create')->name('stories.create');
     Route::get('/stories/{story}', 'StoriesController@show')->name('stories.show');
     Route::post('/stories/store', 'StoriesController@store')->name('stories.store');
+    Route::get('/stories/{story}/edit', 'StoriesController@edit')->name('stories.edit');
+    Route::put('/stories/{story}/update', 'StoriesController@update')->name('stories.update');
     
 });
