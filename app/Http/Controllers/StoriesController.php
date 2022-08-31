@@ -24,6 +24,13 @@ class StoriesController extends Controller
     }
 
     public function store (Request $request) {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'genre' => 'required',
+            'status' => 'required'
+        ]);
+
         auth()->user()->stories()->create([
             'title' => $request->title,
             'body' => $request->body,
