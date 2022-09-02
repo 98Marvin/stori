@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoryRequest extends FormRequest
@@ -23,9 +24,17 @@ class StoryRequest extends FormRequest
      */
     public function rules()
     {
+        $storyId = $this->route('story.id');
+        // dd($storyId);
         return [
-            'title' => 'required',
-            'body' => 'required',
+            'title' => ['required', Rule::unique('stories')->ignore($storyId), 'min:10', 'max:40', 
+            function( $attributes, $values, $fail) {
+                if( $values == 'Dummy Title') {
+                    $fail( ucfirst($attributes) . ' is Invalid');
+                }
+            }
+        ],
+            'body' => 'required|min:50',
             'genre' => 'required',
             'status' => 'required'
         ];

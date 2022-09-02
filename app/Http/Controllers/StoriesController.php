@@ -32,7 +32,7 @@ class StoriesController extends Controller
             ->user()
             ->stories()
             ->create([
-                $request->all
+                $request->validated()
             ]);
 
         return redirect()
@@ -47,7 +47,7 @@ class StoriesController extends Controller
 
     public function update(Story $story, StoryRequest $request)
     {
-        $input = $request->all();
+        $input = $request->validated();
 
         $story->update($input);
 
