@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Story;
+use App\Http\Requests\StoryRequest;
 use Illuminate\Http\Request;
 
 class StoriesController extends Controller
@@ -24,24 +25,14 @@ class StoriesController extends Controller
         return view('stories.create', compact('story'));
     }
 
-    public function store(Request $request)
+    public function store(StoryRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-            'genre' => 'required',
-            'status' => 'required',
-        ]);
 
         auth()
             ->user()
             ->stories()
             ->create([
-                'title' => $request->title,
-                'body' => $request->body,
-                'genre' => $request->genre,
-                'status' => $request->status,
-                // 'user_id' => $request->user()->id
+                $request->all
             ]);
 
         return redirect()
@@ -54,14 +45,9 @@ class StoriesController extends Controller
         return view('stories.edit', compact('story'));
     }
 
-    public function update(Story $story, Request $request)
+    public function update(Story $story, StoryRequest $request)
     {
-        $input = $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-            'genre' => 'required',
-            'status' => 'required',
-        ]);
+        $input = $request->all();
 
         $story->update($input);
 
